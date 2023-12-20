@@ -56,5 +56,5 @@ Yes, but the calculation can take a lot of time if you use the default parameter
 For example, with the following settings the calculation will be faster than with default settings: "--minimum_percent_identity 80 --minimum_match_length 1000 --blast_tool_to_use megablast".
 3) How does Dot_plot_like_in_BLAST depict indels?  
 Just as in the online BLAST, indels (gaps in the alignment) are depicted by gaps in the diagram.  
-For example, here is an alignment (a part of a longer alignment) and a corresponding diagram:  
+For example, here is an alignment (a part of a much longer alignment) and a corresponding diagram:  
 <img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/alignment_with_a_gap_and_its_diagram.png?" width="500">  
