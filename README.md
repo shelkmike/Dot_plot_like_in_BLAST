@@ -31,8 +31,8 @@ Dot_plot_like_in_BLAST has only two mandatory options:<br>
 A typical command of Dot_plot_like_in_BLAST looks like this:<br>
 `python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta`<br>
 <br>
-Dot_plot_like_in_BLAST creates a folder with results. The three main files in this folder are: image.png, image.svg, image.html. They are, respectively, a raster image with the dot plot, a vector image with the dot plot, and an interactive image with the dot plot.<br>
-Dot_plot_like_in_BLAST has many options which allow you to customize alignment and visualization. For example:<br>
+Dot_plot_like_in_BLAST creates a folder with results. The three main files in this folder are: image.png, image.svg, image.html. They are, respectively, a raster image with the dot plot, a vector image with the dot plot, and an interactive image with the dot plot.<br><br>
+Dot_plot_like_in_BLAST has many options that allow you to customize alignment and visualization. For example:<br>
 1) --minimum_percent_identity . Sets the minimum percent identity for a match.<br>
 2) --minimum_match_length . Sets the minimum match length.<br>
 3) --font_size . Sets the font size in the image.<br>
