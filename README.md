@@ -1,6 +1,6 @@
 ## Introduction
 The online BLAST (https://blast.ncbi.nlm.nih.gov) makes dot plots which look like this:<br><br>
-<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/dot_plot_from_online_BLAST.png" width="500">
+<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/dot_plot_from_online_BLAST.png?" width="500">
 <br><br>
 Unfortunately, the *standalone* BLAST lacks the capability of making dot plots. I have made a tool named **Dot_plot_like_in_BLAST** specifically for this purpose. Basically, it is a standalone tool that aligns by BLAST two nucleotide sequences and makes a dot plot. The main differences from the online BLAST are:<br>
 1) While the online BLAST always makes rectangular images with 2:1 aspect ratio, the aspect ratio in Dot_plot_like_in_BLAST is equal to the ratio of sequences' lengths. In other words, Dot_plot_like_in_BLAST doesn't distort lengths.<br>
@@ -8,10 +8,10 @@ Unfortunately, the *standalone* BLAST lacks the capability of making dot plots. 
 3) Dot_plot_like_in_BLAST has several options for image customization. For example, it allows to change the font size and line width.<br>
 4) The online BLAST make images in PNG. Dot_plot_like_in_BLAST makes images in PNG, SVG, and also it makes interactive files in HTML. In that interactive files you can magnify a region of interest and save an SVG file specifically for this region.<br>
 <br>
-This is how an image made by Dot_plot_like_in_BLAST looks. It was made for the same sequences as the image above.
-<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/Dot_plot_like_in_BLAST.png" width="500">
+This is how an image made by Dot_plot_like_in_BLAST looks. It was made for the same sequences as the image above.<br><br><br>
+<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/Dot_plot_like_in_BLAST.png?" width="500"><br><br><br>
 An example of interactive image manipulation (a region is magnified and saved as a separate SVG file):
-<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/Dot_plot_like_in_BLAST__animation.gif" width="500">
+<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/Dot_plot_like_in_BLAST__animation.gif?" width="500">
 
 ## How to install
 Dot_plot_like_in_BLAST has two prerequisites:<br>
@@ -48,4 +48,4 @@ For example, with the following settings the calculation will be faster than wit
 3) How does Dot_plot_like_in_BLAST depict indels?<br>
 Just as in the online BLAST, indels (gaps in the alignment) are depicted by gaps in the diagram.<br>
 For example, here is an alignment (a part of a much longer alignment) and a corresponding diagram:<br>
-<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/alignment_with_a_gap_and_its_diagram.png" width="500"><br>
+<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/alignment_with_a_gap_and_its_diagram.png?" width="500"><br>
