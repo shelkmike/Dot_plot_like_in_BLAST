@@ -42,19 +42,13 @@ import datetime
 import plotly
 
 
-#Сначала проверяю, есть ли "blastn" и "makeblastdb" в $PATH. Если нет, то напишу об этом на экран и закончу работу.
 #Сначала проверяю, все ли нужные программы доступны. Все проблемы запишу в список l_unavailable_files_and_folders, и потом напечатаю его. Если пользователь допустил ошибки ещё и в командной строке, то напечатаю оба списка проблем (недоступные программы и ошибки в командной строке) сразу.
 l_unavailable_files_and_folders = []
 if shutil.which("blastn") is None:
 	l_unavailable_files_and_folders.append("\"blastn\" is not in $PATH")
 if shutil.which("makeblastdb") is None:
 	l_unavailable_files_and_folders.append("\"makeblastdb\" is not in $PATH")
-		
-if shutil.which("blastn") is None:
-	sys.exit("Error: \"blastn\" is not in $PATH. Before running Dot_plot_like_in_BLAST, please add the path to the folder with blastn using the command like: \nexport PATH=\"/home/tools/BLAST+/bin/\":$PATH")
-if shutil.which("makeblastdb") is None:
-	sys.exit("Error: \"blastn\" is not in $PATH. Before running Dot_plot_like_in_BLAST, please add the path to the folder with blastn using the command like: \nexport PATH=\"/home/tools/BLAST+/bin/\":$PATH")
-	
+			
 #делаю парсинг аргументов командной строки. Можно было бы использовать argparse, но когда я делаю это без библиотек, то больше возможностей для того, чтобы сделать интерфейс таким, какой мне нравится.
 
 s_command_line = " ".join(sys.argv) #команда, которой запущен Dot_plot_like_in_BLAST, в одну строку.
@@ -81,7 +75,7 @@ s_vertical_tick_distance = "auto" #Расстояние между засечк�
 s_path_to_the_output_folder = "./Dot_plot_like_in_BLAST__results" #Путь к выходной папке.
 
 
-s_version_of_Dot_plot_like_in_BLAST = "1.3"
+s_version_of_Dot_plot_like_in_BLAST = "1.4"
 
 
 l_errors_in_command_line = [] #список ошибок в командной строке. Если пользователь совершил много ошибок, то Dot_plot_like_in_BLAST напишет про них все, а не только про первую встреченную.
