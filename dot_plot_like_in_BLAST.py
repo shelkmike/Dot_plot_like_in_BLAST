@@ -96,7 +96,7 @@ Alignment options:
 8) --additional_blast_parameters        Additional parameters to pass to BLAST. Should be provided in square brackets. For example: "--additional_blast_parameters [-word_size 7 -dust no]".
 
 Diagram options:
-9) --label_for_the_horizonal_axis        Label for the horizontal axis that corresponds to the first sequence. The default value is "Position in the first sequence (bp)". Should be provided in quotes.
+9) --label_for_the_horizontal_axis        Label for the horizontal axis that corresponds to the first sequence. The default value is "Position in the first sequence (bp)". Should be provided in quotes.
 10) --label_for_the_vertical_axis        Label for the vertical axis that corresponds to the second sequence. The default value is "Position in the second sequence (bp)". Should be provided in quotes.
 11) --vertial_axis_direction        Whether the origin of the coordinate system in the diagram should be in the left bottom (the value must be "bottom-up") or in the left top (the value must be "top-down"). The default value is "bottom-up".
 12) --number_of_best_matches_to_draw        If the number of BLAST matches is larger than this value, Dot_plot_like_in_BLAST will draw only this number of matches with the smallest e-values. The default value is "1000".
@@ -117,10 +117,10 @@ Example 1 (simple):
 python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta
 
 Example 2 (advanced):
-python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta --label_for_the_horizonal_axis "position in rps12, Homo sapiens (bp)" --label_for_the_vertical_axis "position in rps12, Mus musculus (bp)" --threads 20
+python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta --label_for_the_horizontal_axis "position in rps12, Homo sapiens (bp)" --label_for_the_vertical_axis "position in rps12, Mus musculus (bp)" --threads 20
 
 Example 3 (more advanced. Essentially, this switches off filtering by e-value and instead filters by minimum percent identity and minimum match length):
-python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta --label_for_the_horizonal_axis "position in rps12, Homo sapiens (bp)" --label_for_the_vertical_axis "position in rps12, Mus musculus (bp)" --threads 20 --minimum_percent_identity 80 --minimum_match_length 100 --maximum_evalue 1000000
+python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta --label_for_the_horizontal_axis "position in rps12, Homo sapiens (bp)" --label_for_the_vertical_axis "position in rps12, Mus musculus (bp)" --threads 20 --minimum_percent_identity 80 --minimum_match_length 100 --maximum_evalue 1000000
 	""")
 	sys.exit()
 	
@@ -223,8 +223,8 @@ if o_regular_expression_results:
 			l_errors_in_command_line.append("The file with the second sequence " + s_path_to_the_file_with_the_second_sequence + " contains more than one sequence. Dot_plot_like_in_BLAST only accepts files with a single sequence.")
 	
 
-#смотрю, указал ли пользователь надпись, которая должна быть вдоль горизонтальной оси. Считаю, что аргументом опции --label_for_the_horizonal_axis является всё, что идёт до начала следующей опции (то есть, до \s+\-\-) или до конца строки (то есть, до \s*$)
-o_regular_expression_results = re.search(r"( --label_for_the_horizonal_axis )(.*?)(\s+\-\-|\s*$)", s_command_line_reduced)
+#смотрю, указал ли пользователь надпись, которая должна быть вдоль горизонтальной оси. Считаю, что аргументом опции --label_for_the_horizontal_axis является всё, что идёт до начала следующей опции (то есть, до \s+\-\-) или до конца строки (то есть, до \s*$)
+o_regular_expression_results = re.search(r"( --label_for_the_horizontal_axis )(.*?)(\s+\-\-|\s*$)", s_command_line_reduced)
 if o_regular_expression_results:
 	s_label_for_the_horizontal_axis = o_regular_expression_results.group(2)
 
