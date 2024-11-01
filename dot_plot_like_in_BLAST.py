@@ -75,7 +75,7 @@ s_vertical_tick_distance = "auto" #Расстояние между засечк�
 s_path_to_the_output_folder = "./Dot_plot_like_in_BLAST__results" #Путь к выходной папке.
 
 
-s_version_of_Dot_plot_like_in_BLAST = "1.5"
+s_version_of_Dot_plot_like_in_BLAST = "1.6"
 
 
 l_errors_in_command_line = [] #список ошибок в командной строке. Если пользователь совершил много ошибок, то Dot_plot_like_in_BLAST напишет про них все, а не только про первую встреченную.
@@ -688,7 +688,7 @@ o_figure_with_dotplot.write_image(s_path_to_the_output_folder + "/image.svg")
 
 #Делаю рисунок в формате HTML
 #"toImageButtonOptions ..." нужно, чтобы из html-файла картинки сохранялись не в png, а в svg.
-o_figure_with_dotplot.write_html(s_path_to_the_output_folder + "/image.html", include_plotlyjs = "cdn", config = {'toImageButtonOptions': {'format': 'svg', 'filename': 'image', 'height': n_diagram_height, 'width': n_diagram_height, 'scale': 1}})
+o_figure_with_dotplot.write_html(s_path_to_the_output_folder + "/image.html", include_plotlyjs = "cdn", config = {'toImageButtonOptions': {'format': 'svg', 'filename': 'image', 'height': n_diagram_height, 'width': n_diagram_width, 'scale': 1}})
 
 
 o_current_time_and_date = datetime.datetime.now()
