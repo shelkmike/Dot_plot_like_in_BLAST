@@ -75,7 +75,7 @@ s_vertical_tick_distance = "auto" #Расстояние между засечк�
 s_path_to_the_output_folder = "./Dot_plot_like_in_BLAST__results" #Путь к выходной папке.
 
 
-s_version_of_Dot_plot_like_in_BLAST = "1.6"
+s_version_of_Dot_plot_like_in_BLAST = "1.7"
 
 
 l_errors_in_command_line = [] #список ошибок в командной строке. Если пользователь совершил много ошибок, то Dot_plot_like_in_BLAST напишет про них все, а не только про первую встреченную.
@@ -424,12 +424,12 @@ for s_line in f_infile:
 	#Если это не строка с заголовком, то считаю, что это строка с последовательностью
 	if not re.search(r"^>", s_line):
 		o_regular_expression_results = re.search(r"^(.+)", s_line)
-		
-		s_sequence_from_this_string = o_regular_expression_results.group(1)
-		#удаляю всякие пробельные символы, в том числе символ переноса строки.
-		s_sequence_from_this_string = re.sub(r"\s", "", s_sequence_from_this_string)
+		if o_regular_expression_results:
+			s_sequence_from_this_string = o_regular_expression_results.group(1)
+			#удаляю всякие пробельные символы, в том числе символ переноса строки.
+			s_sequence_from_this_string = re.sub(r"\s", "", s_sequence_from_this_string)
 
-		s_first_sequence += s_sequence_from_this_string
+			s_first_sequence += s_sequence_from_this_string
 f_infile.close()
 
 n_first_sequence_length = len(s_first_sequence)
@@ -442,12 +442,12 @@ for s_line in f_infile:
 	#Если это не строка с заголовком, то считаю, что это строка с последовательностью
 	if not re.search(r"^>", s_line):
 		o_regular_expression_results = re.search(r"^(.+)", s_line)
-		
-		s_sequence_from_this_string = o_regular_expression_results.group(1)
-		#удаляю всякие пробельные символы, в том числе символ переноса строки.
-		s_sequence_from_this_string = re.sub(r"\s", "", s_sequence_from_this_string)
+		if o_regular_expression_results:
+			s_sequence_from_this_string = o_regular_expression_results.group(1)
+			#удаляю всякие пробельные символы, в том числе символ переноса строки.
+			s_sequence_from_this_string = re.sub(r"\s", "", s_sequence_from_this_string)
 
-		s_second_sequence += s_sequence_from_this_string
+			s_second_sequence += s_sequence_from_this_string
 f_infile.close()
 
 n_second_sequence_length = len(s_second_sequence)
