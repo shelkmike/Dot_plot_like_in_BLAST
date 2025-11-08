@@ -44,9 +44,10 @@ Dot_plot_like_in_BLAST creates a folder with results. The three main files in th
 Dot_plot_like_in_BLAST has many options that allow you to customize alignment and visualization. For example:  
 1. --minimum_percent_identity . Sets the minimum percent identity for a match.  
 2. --minimum_match_length . Sets the minimum match length.  
-3. --font_size . Sets the font size in the image.  
+3. --theme . Allows you to choose among 11 graphic themes. In particular:
+<img src="http://mikeshelk.site/Diff/Files_for_GitHub/Dot_plot_like_in_BLAST/theme_examples.jpg?" width="500">
 &nbsp;  
-And many others. To see the full list of options, run `python3 dot_plot_like_in_BLAST.py --help`
+There are many other options. To see the full list, run `python3 dot_plot_like_in_BLAST.py --help`
 
 ## Questions and answers
 1) Where can I suggest features and report problems?  
