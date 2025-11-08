@@ -68,14 +68,16 @@ n_number_of_best_matches_to_draw = 1000 #Максимальное количес
 s_vertical_axis_direction = "bottom-up" #Ориентация диаграммы. Находится ли старт осей координат слева снизу ("bottom-up"), или диаграмма перевёрнутая и старт осей координат находится слева сверху ("top-down").
 n_number_of_cpu_threads_to_use = 10 #Количество потоков для выравнивания.
 s_should_diagram_be_square = "no" #Нужно ли делать так, чтобы соотношение сторон диаграммы было квадратным.
+s_image_theme = "plotly" #Тема Plotly
 n_line_width = 1 #Толщина лини матчей, в пикселях.
 n_font_size = 15 #Размер шрифта. Это размер шрифта как для подписей осей, так и для чисел, расположенных вдоль осей.
 s_horizontal_tick_distance = "auto" #Расстояние между засечками по горизонтальной оси. Либо "auto" (тогда Plotly выбирает его автоматически), либо число, выраженное в количестве нуклеотидов. Если это число, то, для простоты, не конвертирую его в int, а так и оставляю строкой.
 s_vertical_tick_distance = "auto" #Расстояние между засечками по вертикальной оси. Либо "auto" (тогда Plotly выбирает его автоматически), либо число, выраженное в количестве нуклеотидов. Если это число, то, для простоты, не конвертирую его в int, а так и оставляю строкой.
+s_number_formatting = "with_commas" #Формат чисел вдоль осей.
 s_path_to_the_output_folder = "./Dot_plot_like_in_BLAST__results" #Путь к выходной папке.
 
 
-s_version_of_Dot_plot_like_in_BLAST = "1.7"
+s_version_of_Dot_plot_like_in_BLAST = "1.8"
 
 
 l_errors_in_command_line = [] #список ошибок в командной строке. Если пользователь совершил много ошибок, то Dot_plot_like_in_BLAST напишет про них все, а не только про первую встреченную.
@@ -101,17 +103,19 @@ Diagram options:
 11) --vertial_axis_direction        Whether the origin of the coordinate system in the diagram should be in the left bottom (the value must be "bottom-up") or in the left top (the value must be "top-down"). The default value is "bottom-up".
 12) --number_of_best_matches_to_draw        If the number of BLAST matches is larger than this value, Dot_plot_like_in_BLAST will draw only this number of matches with the smallest e-values. The default value is "1000".
 13) --square_diagram        By default, sides of the diagram are proportional to sequences' lengths ("--square_diagram no"). To make the diagram square, use "--square_diagram yes". When you align sequences with very different lengths, square diagrams are easier to view.
-14) --line_width        width of lines that represent matches in the diagram, in pixels. The default value is "1".
-15) --font_size        font size for the diagram, in pixels. The default value is "15".
-16) --horizontal_tick_distance        distance between ticks on the horizontal axis. Should be either "auto" (to choose automatically), or a number in base pairs. The default value is "auto".
-17) --vertical_tick_distance        distance between ticks on the vertical axis. Should be either "auto" (to choose automatically), or a number in base pairs. The default value is "auto".
+14) --theme    The graphic style of the diagram. For allowed themes and what they look like, see https://plotly.com/python/templates/ . The default theme is "plotly". A good theme for publications is, in my experience, "plotly_white".
+15) --line_width        width of lines that represent matches in the diagram, in pixels. The default value is "1".
+16) --font_size        font size for the diagram, in pixels. The default value is "15".
+17) --horizontal_tick_distance        distance between ticks on the horizontal axis. Should be either "auto" (to choose automatically), or a number in base pairs. The default value is "auto".
+18) --vertical_tick_distance        distance between ticks on the vertical axis. Should be either "auto" (to choose automatically), or a number in base pairs. The default value is "auto".
+19) --number_formatting     How should numbers along axes be formatted. Possible values are "with_commas" (then numbers look like 100,000), "with_spaces" (then numbers look like 100 000), "with_letters" (then numbers look like 100k). The default value is "with_commas".
 
 Miscellaneous options:
-18) --output_folder        Path to the output folder. The default value is "./Dot_plot_like_in_BLAST__results".
+20) --output_folder        Path to the output folder. The default value is "./Dot_plot_like_in_BLAST__results".
 
 Informational options:
-19) --help        Print this help.
-20) --version        Print the version of Dot_plot_like_in_BLAST.
+21) --help        Print this help.
+22) --version        Print the version of Dot_plot_like_in_BLAST.
 
 Example 1 (simple):
 python3 dot_plot_like_in_BLAST.py --file_with_the_first_sequence sequence_1.fasta --file_with_the_second_sequence sequence_2.fasta
@@ -306,6 +310,14 @@ if o_regular_expression_results:
 	s_string_to_remove = re.escape(o_regular_expression_results.group(0))
 	s_command_line_reduced = re.sub(s_string_to_remove, "", s_command_line_reduced, 1)
 
+#смотрю, указал ли пользователь тему Plotly.
+o_regular_expression_results = re.search(r" --theme (\S+)", s_command_line_reduced)
+if o_regular_expression_results:
+	s_image_theme = o_regular_expression_results.group(1)
+
+	s_string_to_remove = re.escape(o_regular_expression_results.group(0))
+	s_command_line_reduced = re.sub(s_string_to_remove, "", s_command_line_reduced, 1)
+
 #смотрю, указал ли пользователь толщину линии на графике.
 o_regular_expression_results = re.search(r" --line_width ([\d\.eE\+\-]+)", s_command_line_reduced)
 if o_regular_expression_results:
@@ -334,6 +346,14 @@ if o_regular_expression_results:
 o_regular_expression_results = re.search(r" --vertical_tick_distance (auto|[\d\.eE\+\-]+)", s_command_line_reduced)
 if o_regular_expression_results:
 	s_vertical_tick_distance = o_regular_expression_results.group(1)
+
+	s_string_to_remove = re.escape(o_regular_expression_results.group(0))
+	s_command_line_reduced = re.sub(s_string_to_remove, "", s_command_line_reduced, 1)
+
+#смотрю, указал ли пользователь, как нужно форматировать числа вдоль осей.
+o_regular_expression_results = re.search(r" --number_formatting (\S+)", s_command_line_reduced)
+if o_regular_expression_results:
+	s_number_formatting = o_regular_expression_results.group(1)
 
 	s_string_to_remove = re.escape(o_regular_expression_results.group(0))
 	s_command_line_reduced = re.sub(s_string_to_remove, "", s_command_line_reduced, 1)
@@ -669,6 +689,21 @@ o_figure_with_dotplot.update_layout(shapes = l_lines_for_input_to_Plotly)
 
 #Устанавливаю размер шрифта.
 o_figure_with_dotplot.update_layout(font = {"size" : n_font_size})
+
+#Устанавливаю тему.
+o_figure_with_dotplot.update_layout(template = s_image_theme)
+
+#Обновляю подписи по осям, чтобы они были в нужном формате (например, "1 200 000", а не "1.2m"). Делаю как написано тут: https://community.plotly.com/t/how-to-add-space-as-a-thousand-separator-on-axis-ticks/70463/3
+if s_number_formatting == "with_letters":
+	pass
+if s_number_formatting == "with_commas":
+	o_figure_with_dotplot.update_xaxes(tickformat=",")
+	o_figure_with_dotplot.update_yaxes(tickformat=",")
+	o_figure_with_dotplot.update_layout(separators="*,.*")
+if s_number_formatting == "with_spaces":
+	o_figure_with_dotplot.update_xaxes(tickformat=",")
+	o_figure_with_dotplot.update_yaxes(tickformat=",")
+	o_figure_with_dotplot.update_layout(separators="* .*")
 
 #Устанавливаю расстояние между засечками по горизонтальной и вертикальной осям в случае, если значения s_horizontal_tick_distance и s_vertical_tick_distance оба не равны "auto".
 if ((s_horizontal_tick_distance == "auto") and (s_vertical_tick_distance == "auto")):
