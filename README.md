@@ -22,8 +22,8 @@ An example of interactive image manipulation (a region is magnified and saved as
 ## How to install
 Dot_plot_like_in_BLAST has two prerequisites:  
 1) The path to BLAST+ executable files should be in $PATH . BLAST+ can be downloaded here https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/  
-2) The Python library Plotly should be installed. You can install it, for example, using the following command:  
-`pip3 install --upgrade --user plotly`  
+2) The Python libraries Plotly and Kaleido should be installed. You can install them, for example, using the following command:  
+`pip3 install --upgrade --user plotly kaleido`  
 &nbsp;  
 Then, download the latest version of Dot_plot_like_in_BLAST from [Releases](https://github.com/shelkmike/Dot_plot_like_in_BLAST/releases) and extract the archive. That's all.  
 &nbsp;  
